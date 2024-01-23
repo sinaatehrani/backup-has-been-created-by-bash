@@ -1,0 +1,10 @@
+#!/bin/bash
+
+read -p "Please specify the path:" OUTPUT
+
+mkdir $OUTPUT
+
+awk -F":" '{print $1 "|" $3}' /etc/passwd >> $OUTPUT/savefolder_`date +%Y%m%d`.log
+
+
+find $OUTPUT -name "savefolder*.log" -mtime +2 -exec rm {} \;
